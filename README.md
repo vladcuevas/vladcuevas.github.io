@@ -21,6 +21,8 @@ Las tecnologías utilizadas fueron:
 
 ## 4) Un screenshot
 
+![alt text](https://vladcuevas.github.io/images/screenshot.PNG")
+
 ## 5) La licencia MIT
 
 * La licencia [MIT](https://github.com/vladcuevas/vladcuevas.github.io/blob/master/LICENSE) está incluida dentro del repositorio
