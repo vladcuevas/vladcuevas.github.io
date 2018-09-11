@@ -21,7 +21,7 @@ Las tecnologías utilizadas fueron:
 
 ## 4) Un screenshot
 
-![alt text](https://vladcuevas.github.io/images/screenshot.PNG" "screenshot")
+![alt text](http://vladcuevas.github.io/images/screenshot.PNG)
 
 ## 5) La licencia MIT
 
