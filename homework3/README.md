@@ -1,4 +1,4 @@
- Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents  .axis .domain { display: none; }  /\* set the CSS \*/ body { font: 12px Arial; } path { stroke: steelblue; stroke-width: 2; fill: none; } .axis path, .axis line { fill: none; stroke: grey; stroke-width: 1; shape-rendering: crispEdges; } div.tooltip { position: absolute; text-align: center; width: 60px; height: 18px; padding: 2px; font: 12px sans-serif; background: lightsteelblue; border: 0px; border-radius: 8px; pointer-events: none; color: MidnightBlue; } #MyRect { border-style: solid; border-color: black; border-width: 1px; } 
+ Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents. 
 
 Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents
 ==========================================================================================================
