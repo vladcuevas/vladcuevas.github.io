@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
-    <title>Exploración de los medicamentos de Colombia de acuerdo con los datos del INVIMA</title>
+    <title>Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents</title>
 </head>
+<style>
+.axis .domain {
+    display: none;
+}
+</style>
+
 <style>
 /* set the CSS */
 
@@ -39,248 +45,148 @@ div.tooltip {
     pointer-events: none;
     color: MidnightBlue;
 }
+
+#MyRect {
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+}
+
 </style>
 
 <body>
-    <h1>Exploración de los medicamentos de Colombia de acuerdo con los datos del INVIMA</h1>
-    <form id="dimensions">
-        <!--input type='radio' id="join" name="mode" checked>Join</input-->
-        <input type='radio' id="principio_activo_1" name="mode" checked>Principio Activo</input>
-        <input type='radio' id="vigentes" name="mode" checked>Vigentes</input>
-        <input type='radio' id="renovacion" name="mode">Renovación</input>
-        <input type='radio' id="vencidos" name="mode">Vencidos</input>
-        <input type='radio' id="vitalesNO" name="mode">Vitales que no hay</input>
-    </form>
-    <svg width=800 height=600 id="viz">
-    </svg>
+    <h1>Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents</h1>
+
+    <div >
+        <svg width="960" height="500" id="MyRect" ></svg>
+    </div>
     <script src="https://d3js.org/d3.v5.min.js"></script>
-    <script>
-    jsUcfirst = (string) => {
-        let lstring = jsLowerCase(string);
-        return lstring.charAt(0).toUpperCase() + lstring.slice(1);
-    }
-    jsLowerCase = (string) => {
-        return string.toLowerCase();
-    }
-    const readJSON = (path) => {
-        return d3.json(path);
-    }
-    const readCSV = (path) => {
-        return d3.csv(path);
-    }
-    getLeftX = (int, w) => {
-        //console.log(int);
-        //console.log(w);
-        if ((int + 150) > w) {
-            return w / 1.5;
-        } else
-            return int;
-    }
+    
+<script>
+// Define the div for the tooltip
+let div = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
-    formatNumber = (n) => {
-        return d3.format("~s")(n);
-    }
+let tooltip;
 
-    join = (lookupTable, mainTable, lookupKey, mainKey, select) => {
-        let l = lookupTable.length,
-            m = mainTable.length,
-            lookupIndex = [],
-            output = [];
-        for (let i = 0; i < l; i++) { // loop through l items
-            let row = lookupTable[i];
-            lookupIndex[row[lookupKey]] = row; // create an index for lookup table
-        }
-        for (let j = 0; j < m; j++) { // loop through m items
-            let y = mainTable[j];
-            let x = lookupIndex[y[mainKey]]; // get corresponding row from lookupTable
-            output.push(select(y, x)); // select only the columns you need
-        }
-        return output;
-    };
+formatNumber = (n) => {
+    return d3.format("~s")(n);
+}
 
-    // Define the div for the tooltip
-    let div = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+let svg = d3.select("svg"),
+    margin = {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 40
+    },
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-    const vencidos = readJSON("../datasets/C_DIGO__NICO_DE_MEDICAMENTOS_VENCIDOS.json");
-    const renovacion = readJSON("../datasets/C_DIGO__NICO_DE_MEDICAMENTOS_EN_TR_MITE_DE_RENOVACI_N.json");
-    //const otros = readJSON("../datasets/C_DIGO__NICO_DE_MEDICAMENTOS_OTROS_ESTADOS.json");
-    const vitalesNO = readJSON("../datasets/MEDICAMENTOS_VITALES_NO_DISPONIBLES.json");
-    const vigentes = readCSV("../datasets/ListadoCodigoUnicoVigentesAgo2018.csv");
-    // //const generico = readJSON("https://www.datos.gov.co/resource/n6vt-bk33.json");
+let x = d3.scaleBand()
+    .rangeRound([0, width])
+    .paddingInner(0.05)
+    .align(0.1);
 
-    //dataset = vigentes;
+let y = d3.scaleLinear()
+    .rangeRound([height, 0]);
 
-    whichRadio = () => {
-        let form = document.getElementById("dimensions")
-        let form_val;
-        for (let i = 0; i < form.length; i++) {
-            if (form[i].checked) {
-                form_val = form[i].id;
+let z = d3.scaleOrdinal()
+    .range(['#69c242', '#64bbe3', '#ffcc00', '#ff7300', '#cf2030']);
+
+rawDS = d3.csv("../datasets/BATERIA_INDICADORES_INFANCIA_Y_ADOLESCENCIA.csv", function(d) {
+    /*for (i = 1, t = 0; i < columns.length; ++i) {
+        t += d[columns[i]] = +d[columns[i]];
+        //console.log(columns[i]);
+    }*/
+    //d.total = t;
+    //console.log(columns);
+    return d;
+});
+
+rawDS.then((d) => {
+    for (var index in d) {
+      if (index != 'columns') {
+            //console.log(d[index]);
+            //console.log(d['columns'].length);
+            for (i = 1, t = 0; i < d['columns'].length; ++i) {
+                col = d['columns'][i];
+                t += d[index][col] = +d[index][col];
+                //t += d[columns[i]] = +d[columns[i]];
+                
+                //console.log(t);
+                //console.log(d[i][col]);
             }
-        }
-        return form_val;
-    }
-
-    const changeIt = () => {
-        //get rid of everything and re-draw
-
-        form_val = whichRadio();
-
-        removeStuff();
-        if (form_val == "renovacion") {
-            setDataSet(renovacion, "viaadministracion", "cantidad");
-        } else if (form_val == "vigentes") {
-            setDataSet(vigentes, "VÍA ADMINISTRACIÓN", "CANTIDAD");
-        } else if (form_val == "vencidos") {
-            setDataSet(vencidos, "viaadministracion", "cantidad");
-        } else if (form_val == "vitalesNO") {
-            setDataSet(vitalesNO, "forma_farmac_utica", "cantidad_solicitada");
-        } else if (form_val == "principio_activo_1") {
-            setDataSet(vigentes, "PRINCIPIO ACTIVO", "CANTIDAD");
-        } else if (form_val == "join") {
-            results = setDataSetForJoins(renovacion, vencidos);
-            console.log(results);
-            //setDataSet(results, "key", "value");
+            //console.log(t);
+            d[index].total = t;
+            //console.log(d.total);
+            //return d;
         }
     }
+    let keys = d.columns.slice(1);
+    //console.log(keys);
+    //console.log(d);
 
-    const removeStuff = () => {
-        //d3.selectAll(".tooltip").remove();
-        d3.selectAll(".tick.left").remove();
-        d3.selectAll(".tick.left").remove();
-        d3.selectAll(".x.axis").remove();
-        d3.selectAll(".y.axis").remove();
-        d3.selectAll(".point").transition().duration(500).style("opacity", 0).remove();
-    }
+    d.sort((a, b) => {
+        //console.log(a);
+        //console.log(b.total - a.total);
+        return b.total - a.total;
+        //
+    });
+    x.domain(d.map(function(d) {
+        //console.log(d.State);
+        return d['Nombre del Indicador'];
+    }));
 
-    let dataDim = d3.select("#dimensions");
-    dataDim.on("change", changeIt);
+    y.domain([0, d3.max(d, function(d) {
+        return d.total;
+    })]).nice();
+    z.domain(keys);
 
-    let setDataSetForJoins = (rawDS1, rawDS2) => {
-        r = rawDS1.then((ds1) => {
-            r = rawDS2.then((ds2) => {
-                let result = join(ds1, ds2, "registrosanitario", "registrosanitario", (d1, d2) => {
-                    return {
-                        key: d1.muestramedica,
-                        value: +d1.cantidad
-                    };
-                });
-                //console.log(result);
-                return result;
-            });
-            r.then((d) => {
-                //console.log(d);
-                return d;
-            });
-        });
-        console.log(r);
-        r.then((d) => {
-            console.log(d);
+    g.append("g")
+        .selectAll("g")
+        .data(d3.stack().keys(keys)(d))
+        .enter().append("g")
+        .attr("fill", function(d) {
+           //console.log(d.key);
+            return z(d.key);
+        })
+        .selectAll("rect")
+        .data(function(d) {
+            //console.log(d);
             return d;
-        });
-    }
-
-    const setDataSet = (rawDS, theKey1, theKey2) => {
-        rawDS.then((ds) => {
-            console.log(ds[1]);
-            // console.log(Object.keys(ds[1]));
-            //Dataset to work with
-            let pdAvg = d3.nest()
-                .key((ds) => {
-                    return ds[theKey1];
-                })
-                .rollup((v) => {
-                    return {
-                        count: v.length,
-                        total: d3.sum(v, function(d) { return d[theKey2]; })
-                    };
-                })
-                .entries(ds);
-
-            const pdAvgSorted = pdAvg.sort((a, b) => d3.ascending(a.value.total, b.value.total));
-            //console.log(pdAvgSorted);
-
-            let top10 = [];
-            for (let i = pdAvgSorted.length - 10; i < pdAvgSorted.length; i++) {
-                console.log(pdAvgSorted[i]);
-                top10.push(pdAvgSorted[i]);
-            }
-            console.log(top10);
-            renderHorizontalHistogram(top10);
-            // console.log(pdAvgSorted);
-        });
-    }
-
-    setDataSet(vigentes, "VÍA ADMINISTRACIÓN", "CANTIDAD");
-
-    const renderHorizontalHistogram = (data) => {
-        let svg = d3.select("#viz"),
-            margin = {
-                top: 20,
-                right: 20,
-                bottom: 30,
-                left: 50
-            },
-            width = +svg.attr("width") - margin.left - margin.right,
-            height = +svg.attr("height") - margin.top - margin.bottom,
-            //Group that is going to be translated
-            g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-        let tooltip;
-
-        g.append("g")
-            .attr("class", "x axis");
-        g.append("g")
-            .attr("class", "y axis");
-        //Scales
-        //Lineal scale
-        let y = d3.scaleBand()
-            .padding(0.2)
-            .range([height, 0], .1);
-        let x = d3.scaleLinear().range([0, width * .85]);
-
-        update = (data) => {
-            //console.log(data);
-            //Update my domains to have the scales applied
-            y.domain(data.map(d => jsUcfirst(d.key)));
-            x.domain([0, d3.max(data, d => d.value.total)]);
-
-            //Update
-            let points = g.selectAll(".point").data(data);
-            //Enter
-            let pointsEnter = points.enter()
-                .append("rect")
-                .attr("class", "point");
-
-            radi = whichRadio();
-
-            //Enter + Updates
-            //Bars location
-            points.merge(pointsEnter)
-                .attr("x", 0)
-                .attr("y", d => y(jsUcfirst(d.key)))
-                .attr("height", d => y.bandwidth())
-                .attr("width", d => x(d.value.total))
-                .style("fill", "steelblue")
-                .on("mouseover", (d) => {
+        })
+        .enter().append("rect")
+        .attr("x", function(d) {
+            //console.log(d.data['Nombre del Indicador']);
+            return x(d.data['Nombre del Indicador']);
+        })
+        .attr("y", function(d) {
+            //console.log(y(d[1]));
+            if (!d[1])
+                d[1] = 0;
+            //console.log(d[1]);
+            return y(d[1]);
+        })
+        .attr("height", function(d) {
+            if (!d[0]) d[0] = 0;
+            if (!d[1]) d[1] = 0;
+            return y(d[0]) - y(d[1]);
+        })
+        .attr("width", x.bandwidth())
+        .on("mouseover", (d) => {
+            console.log(d);
+                    tot = d[1]-d[0];
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
-                    if (radi != "principio_activo_1") {
-                        div
-                            .html(formatNumber(d.value.total) + "<br/>")
-                            .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 28) + "px");
-                    } else {
-                        div.html(formatNumber(d.value.total) + " : " + d.key + "<br/>")
+                        div.html(formatNumber(tot) + " : " + d.data['Nombre del Indicador'] + "<br/>")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY - 28) + "px")
                             .style("width", "400px")
-                            .style("height", "20px");
-                    }
-
+                            .style("height", "40px");
                 })
                 .on("mouseout", (d) => {
                     div.transition()
@@ -288,114 +194,93 @@ div.tooltip {
                         .style("opacity", 0);
                 });
 
-            points.exit()
-                .remove();
-            //Labels
-            g.select(".x.axis")
-                .call(d3.axisBottom(x).tickFormat(d3.format("~s")))
-                .attr("transform", "translate(0, " + height + ")");
-            g.select(".y.axis").call(d3.axisLeft(y));
+        // g.append("g")
+        //     .attr("class", "axis")
+        //     .attr("transform", "translate(0," + height + ")")
+        //     .call(d3.axisBottom(x));
 
-
-            if (radi != "principio_activo_1") {
-                g.selectAll(".y.axis")
-                    .selectAll(".tick")
-                    .selectAll("text")
-                    .attr("class", "tick left")
-                    .style("font-size", "9pt")
-                    .style("font-family", "sans-serif")
-                    .style("color", "Navy")
-                    .attr("x", 0 + (width))
-                    .data(data);
-            } else {
-                g.selectAll(".y.axis")
-                    .selectAll(".tick")
-                    .selectAll("text")
-                    .attr("class", "tick left")
-                    .style("font-size", "0pt")
-                    .style("font-family", "sans-serif")
-                    .style("color", "Navy")
-                    .attr("x", 0 + (width))
-                    .data(data);
-            }
-        }
-
-        update(data);
-    }
-
-    const renderVerticalHistogram = (data) => {
-        let svg = d3.select("#viz"),
-            margin = {
-                top: 20,
-                right: 20,
-                bottom: 30,
-                left: 50
-            },
-            width = +svg.attr("width") - margin.left - margin.right,
-            height = +svg.attr("height") - margin.top - margin.bottom,
-            //Group that is going to be translated
-            g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         g.append("g")
-            .attr("class", "x axis");
-        g.append("g")
-            .attr("class", "y axis");
-        //Scales
-        //Lineal scale
-        let x = d3.scaleBand()
-            .padding(0.2)
-            .range([0, width]);
-        let y = d3.scaleLinear().range([height, 0]);
-        update = (data) => {
-            //Update my domains to have the scales applied
-            x.domain(data.map(d => d.key));
-            y.domain([0, d3.max(data, d => d.value)]);
-            //Update
-            let points = g.selectAll(".point").data(data);
-            //Enter
-            let pointsEnter = points.enter()
-                .append("rect")
-                .attr("class", "point");
-            //Enter + Updates
-            points.merge(pointsEnter)
-                .attr("x", d => x(d.key))
-                .attr("y", d => y(d.value))
-                .attr("width", d => x.bandwidth())
-                .attr("height", d => height - y(d.value))
-                .style("fill", "steelblue")
-            points.exit()
-                .remove();
-            g.select(".x.axis")
-                .call(d3.axisBottom(x))
-                .attr("transform", "translate(0, " + height + ")");
-            g.select(".y.axis").call(d3.axisLeft(y));
-        }
-        update(data);
-    }
-    </script>
+            .attr("class", "axis")
+            .call(d3.axisLeft(y).ticks(null, "s"))
+            .append("text")
+            .attr("x", 2)
+            .attr("y", y(y.ticks().pop()) + 0.5)
+            .attr("dy", "0.32em")
+            .attr("fill", "#000")
+            .attr("font-weight", "bold")
+            .attr("text-anchor", "start")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", "11px")
+            .text("# of Casos");
+
+        let legend = g.append("g")
+            .attr("font-family", "sans-serif")
+            .attr("font-size", 10)
+            .attr("text-anchor", "end")
+            .selectAll("g")
+            .data(keys.slice().reverse())
+            .enter().append("g")
+            .attr("transform", function(d, i) {
+                return "translate(0," + i * 20 + ")";
+            });
+
+        legend.append("rect")
+            .attr("x", width - 19)
+            .attr("width", 19)
+            .attr("height", 19)
+            .attr("fill", z);
+
+        legend.append("text")
+            .attr("x", width - 24)
+            .attr("y", 9.5)
+            .attr("dy", "0.32em")
+            .text(function(d) {
+                return d;
+            });        
+});
+</script>    
     <h1><a id="VisualAnalytics_0"></a>Visual-Analytics</h1>
-    <h2><a></a>0) Código del Proyecto</h2>
+    <h2><a></a>0) Code</h2>
     <ul>
-        <li>Puede ser encontrado en el siguiente enlace <a href="https://github.com/vladcuevas/vladcuevas.github.io">https://github.com/vladcuevas/vladcuevas.github.io</a></li>
+        <li>The code of this project can be found @ <a href="https://github.com/vladcuevas/vladcuevas.github.io/tree/master/homework3">https://github.com/vladcuevas/vladcuevas.github.io/tree/master/homework3</a></li>
     </ul>
     <h2><a id="1_Objetivo_del_proyecto_y_tecnologas_usadas_2"></a>1) Objetivo del proyecto y tecnologías usadas</h2>
-    <p>Proyecto que busca permitir explorar los medicamentos de Colombia y permitirles a los pacientes saber si sus medicamentos van a ser entregados por las EPS</p>
-    <p>Las tecnologías utilizadas fueron:</p>
+    <p>The goal of this project is to present in the simplest possible way how the children, adolescents and some adults have been killed, attacked or injured by people, military groups, inefficiencies of some governmental organizations and so on. In a sense the idea is to let each of the organizations in charge of each of the different cases to improve and reduce this kind of problems that always affect people in need and the weakest links in our civilizations.</p>
+
+    <ul>
+        <li><b>WHAT:</b> Data: Multidimensional table: One quantitative value attribute, two categorical key attributes for the year and violence type.</li>
+        <li><b>WHAT:</b> Derived: One quantitative attribute value to sort the view.</li>
+        <li><b>WHY:</b> Present distribution of types of violence and deaths over a period of 4 years in Colombia./li>
+        <li><b>HOW:</b> Encode: Line marks with length channel; rectilinear layout.</li>
+        <li><b>HOW:</b> Manipulate: To show the type of cases of violence, category 1.</li>
+        <li><b>Marks:</b>Lines in an ordered way to express the caterory related to the type of cases</li>
+        <li><b>Channels:</b>Color for the categories related to years (aka category 2), lenght for the quantitative attribute of the number of cases</li>
+        <li><b>Insight:</b>In is interesting that this dataset is about bacteria and how that affect children, but once the data is visualized it can be appreciated that there are more problems that affect Colombia, in fact the title for the dataset is not what the information have, at least not the bacteria alone, there are more bacteria apparently and it can be noticed that even the “conflicto armado” is causing violence cases in Colombia.</li>
+    </ul>
+
+    <h3>Datasource</h3>
+    <ul>
+        <li>The datasource can be found here <a href="https://www.datos.gov.co/Salud-y-Protecci-n-Social/BATERIA-INDICADORES-INFANCIA-Y-ADOLESCENCIA/ey47-7i4z">datos abiertos link for the data</a></li>
+    </ul>
+    
+
+    <h3>Below you can find the technologies used for this project:</h3>
     <ul>
         <li>HTML5</li>
         <li>D3 v5</li>
         <li>JavaScript ECMAScript 2017</li>
         <li>CSS</li>
     </ul>
-    <h2><a id="2_Cmo_se_corre_prerrequisitos_etc_13"></a>2) ¿Cómo se corre (prerrequisitos etc)?</h2>
+    <h2><a id="2_Cmo_se_corre_prerrequisitos_etc_13"></a>2) How to run this project (requirements included)?</h2>
     <ul>
-        <li>Lo único necesario es acceder al enlace <a href="https://vladcuevas.github.io">vladcuevas.github.io</a></li>
+        <li>The only requirement is a modern browser to access <a href="https://github.com/vladcuevas/vladcuevas.github.io/tree/master/homework3">vladcuevas.github.io</a></li>
     </ul>
-    <h2><a id="3_Autores_con_links_y_link_a_la_pgina_del_proyecto_17"></a>3) Autores con links, y link a la página del proyecto</h2>
+    <h2><a id="3_Autores_con_links_y_link_a_la_pgina_del_proyecto_17"></a>3) Authors with links, and link to the project page</h2>
     <ul>
         <li>Vladimir E. Cuevas S. @ <a href="https://github.com/vladcuevas">https://github.com/vladcuevas</a></li>
     </ul>
     <h2><a id="4_Un_screenshot_21"></a>4) Un screenshot</h2>
-    <p><img src="https://vladcuevas.github.io/images/screenshot.PNG" alt="alt text" style="width:800px;border-style: solid;border-color: red;"></p>
+    <p><img src="https://vladcuevas.github.io/images/screenshot_hw3.PNG" alt="alt text" style="width:800px;border-style: solid;border-color: black; border-width: 1px"></p>
     <h2><a id="5_La_licencia_MIT_23"></a>5) La licencia MIT</h2>
     <ul>
         <li>La licencia <a href="https://github.com/vladcuevas/vladcuevas.github.io/blob/master/LICENSE">MIT</a> está incluida dentro del repositorio</li>
