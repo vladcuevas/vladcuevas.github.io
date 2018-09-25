@@ -1,5 +1,3 @@
- Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents. 
-
 Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents
 ==========================================================================================================
 
