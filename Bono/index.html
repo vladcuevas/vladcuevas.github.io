@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Incremento de la Temperatura desde 1950 (Promedio de cada 5 años)</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,500" rel="stylesheet" type="text/css">
+    <link href="css/style-light.css" rel="stylesheet" type="text/css" />
+    <!-- <script src="data/data.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+    <div class="widget" style="width:768px">
+        <div class="header">Incremento de la Temperatura desde 1950 (Promedio de cada 10 años)</div>
+        <div id="chart" class="chart-container" style="padding:5px">
+            <script src="js/script.js" type="module"></script>
+        </div>
+        <form id="dimensions" class="">
+            <label class="container float-left">
+                <input type="radio" id="Celsius" name="mode"><span class="checkmark">Centigrados</span>
+            </label>
+            <label class="container float-left">
+                <input type="radio" id="Farenheit" name="mode" checked><span class="checkmark">Farenheit</span>
+            </label>
+        </form>
+    </div>
+</body>
+
+</html>

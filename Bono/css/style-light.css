@@ -1,0 +1,173 @@
+body {
+    background-color: #F7F6F6;
+    width: 100%;
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+}
+
+.widget {
+    margin: 0 auto;
+    width:1000px;
+    margin-top:50px;
+    background-color:#fff;
+    -background-color: #222D3A;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.3);
+}
+
+.header{
+    background-color: #eee;
+    height:40px;
+    color:#555;
+    text-align: center;
+    line-height: 40px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    font-weight: 400;
+    font-size: 1.5em;
+    text-shadow: 1px 1px #fff;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.chart-container{
+    padding:25px;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #878686;
+}
+
+.grid .tick {
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+
+.y-grid .tick{
+    stroke-dasharray: 5;
+    stroke: lightgrey;
+    opacity: 0.7;
+}
+
+.grid path {
+    stroke-width: 0;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+    opacity: .3;
+}
+
+.line1 {
+    fill: none;
+    stroke: #1f77b4;
+    stroke-width: 1.5px;
+    opacity: .6;
+}
+
+.line2 {
+    fill: none;
+    stroke: #ff7f0e;
+    stroke-width: 1.5px;
+    opacity: .6;
+}
+
+.line3 {
+    fill: none;
+    stroke: #2ca02c;
+    stroke-width: 1.5px;
+    opacity: .6;
+}
+
+.line10 {
+    fill: none;
+    stroke: #1f77b4;
+    stroke-width: 1px;
+    opacity: 0;
+}
+
+.line20 {
+    fill: none;
+    stroke: #ff7f0e;
+    stroke-width: 1px;
+    opacity: 0;
+}
+
+.line30 {
+    fill: none;
+    stroke: #2ca02c;
+    stroke-width: 1px;
+    opacity: 0;
+}
+
+.dot1 {
+
+    fill: #1f77b4;
+    cursor: pointer;
+}
+
+
+.dot2 {
+
+    fill: #ff7f0e;
+    cursor: pointer;
+
+}
+
+.dot3 {
+
+    fill: #2ca02c;
+    cursor: pointer;
+
+}
+
+div.line1_tt {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 38px;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: #1f77b4;
+    border: 0px;
+    pointer-events: none;
+    border-radius: 2px;
+    color:#000000;
+}
+
+div.line2_tt {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 38px;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: #ff7f0e;
+    border: 0px;
+    pointer-events: none;
+    border-radius: 2px;
+    color:#000000;
+}
+div.line3_tt {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    height: 38px;
+    padding: 5px;
+    font: 12px sans-serif;
+    background: #2ca02c;
+    border: 0px;
+    pointer-events: none;
+    border-radius: 2px;
+    color:#000000;
+}
+
+.center {
+    text-align: center;
+}
+
+.float-left{float:left; display:inline; width: 49%;}
+.float-right{float:right; display:inline;}
