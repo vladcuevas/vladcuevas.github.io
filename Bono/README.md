@@ -104,7 +104,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 
 ## Screenshot
 
-![alt text](https://github.com/vladcuevas/Visual-Analytics/raw/master/Bono/img/Capture01.gif)
+![alt text](https://raw.githubusercontent.com/vladcuevas/vladcuevas.github.io/master/Bono/img/Capture01.gif)
 
 ## Licencia
 Este proyecto está bajo la licencia [MIT](https://github.com/vladcuevas/vladcuevas.github.io/blob/master/LICENSE).
