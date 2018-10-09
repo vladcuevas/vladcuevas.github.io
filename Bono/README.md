@@ -1,4 +1,4 @@
-# Incremento de la Temperatura desde 1950 (Promedio de cada 5 años)
+# Incremento de la Temperatura desde 1950 (Promedio de cada 10 años)
 
 ![alt text](https://c1.staticflickr.com/3/2922/14141611115_7bcfdc2ab0_c.jpg)
 
