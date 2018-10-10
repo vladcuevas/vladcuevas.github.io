@@ -1,4 +1,4 @@
-# Repositirio de tareas, bonos y proyectos de Visual Analytics.
+# Repositorio de tareas, bonos y proyectos de Visual Analytics.
 
  - [Bono: Incremento de la Temperatura desde 1950 (Promedio de cada 10 años)](https://vladcuevas.github.io/Bono)
 
