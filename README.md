@@ -1,28 +1,7 @@
-# Visual-Analytics
+# Repositirio de tareas, bonos y proyectos de Visual Analytics.
 
-## 1) Objetivo del proyecto y tecnologías usadas
+ - (Bono: Incremento de la Temperatura desde 1950 (Promedio de cada 10 años))[Bono/index.html]
 
-Proyecto que busca permitir explorar los medicamentos de Colombia y permitirles a los pacientes saber si sus medicamentos van a ser entregados por las EPS
+ - (Tarea 2: Exploración de los medicamentos de Colombia de acuerdo con los datos del INVIMA)[tarea2/index.html]
 
-Las tecnologías utilizadas fueron:
-
-* HTML5
-* D3 v5
-* JavaScript ECMAScript 2017
-* CSS
-
-## 2) ¿Cómo se corre (prerrequisitos etc)?
-
-* Lo único necesario es acceder al enlace [vladcuevas.github.io](https://vladcuevas.github.io)
-
-## 3) Autores con links, y link a la página del proyecto
-
-* Vladimir E. Cuevas S.  @ [https://github.com/vladcuevas](https://github.com/vladcuevas)
-
-## 4) Un screenshot
-
-![alt text](http://vladcuevas.github.io/images/screenshot.PNG)
-
-## 5) La licencia MIT
-
-* La licencia [MIT](https://github.com/vladcuevas/vladcuevas.github.io/blob/master/LICENSE) está incluida dentro del repositorio
+ - (Tarea 3: Presentation of the distribution of cases of violence in Colombia with respect to children and adolescents) [homework3/index.html]

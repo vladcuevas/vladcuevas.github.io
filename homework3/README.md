@@ -16,7 +16,7 @@ The goal of this project is to present in the simplest possible way how the chil
 
 *   **WHAT:** Data: Multidimensional table: One quantitative value attribute, two categorical key attributes for the year and violence type.
 *   **WHAT:** Derived: One quantitative attribute value to sort the view.
-*   **WHY:** Present distribution of types of violence and deaths over a period of 4 years in Colombia./li>
+*   **WHY:** Present distribution of types of violence and deaths over a period of 4 years in Colombia., **Separate, Order and Align.**
 *   **HOW:** Encode: Line marks with length channel; rectilinear layout.
 *   **HOW:** Manipulate: To show the type of cases of violence, category 1.
 *   **Marks:**Lines in an ordered way to express the caterory related to the type of cases

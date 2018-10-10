@@ -96,48 +96,46 @@ let y = d3.scaleLinear()
 let z = d3.scaleOrdinal()
     .range(['#69c242', '#64bbe3', '#ffcc00', '#ff7300', '#cf2030']);
 
+var stack = d3.stack()
+    .offset(d3.stackOffsetExpand);    
+
 rawDS = d3.csv("../datasets/BATERIA_INDICADORES_INFANCIA_Y_ADOLESCENCIA.csv", function(d) {
-    /*for (i = 1, t = 0; i < columns.length; ++i) {
-        t += d[columns[i]] = +d[columns[i]];
-        //console.log(columns[i]);
-    }*/
-    //d.total = t;
-    //console.log(columns);
-    return d;
+    return {
+        name : d['Nombre del Indicador'],
+        2010 : +d[2010],
+        2011 : +d[2011],
+        2012 : +d[2012],
+        2013 : +d[2013],
+        2014 : +d[2014],
+        2015 : +d[2015]
+  };
 });
 
 rawDS.then((d) => {
     for (var index in d) {
       if (index != 'columns') {
-            //console.log(d[index]);
-            //console.log(d['columns'].length);
             for (i = 1, t = 0; i < d['columns'].length; ++i) {
                 col = d['columns'][i];
+                if (!d[index][col]) d[index][col] = 0;
                 t += d[index][col] = +d[index][col];
                 //t += d[columns[i]] = +d[columns[i]];
                 
-                //console.log(t);
-                //console.log(d[i][col]);
             }
-            //console.log(t);
+            if (!t) t = 0;
             d[index].total = t;
-            //console.log(d.total);
             //return d;
         }
     }
-    let keys = d.columns.slice(1);
-    //console.log(keys);
-    //console.log(d);
+    const keys = d.columns.slice(1);
 
     d.sort((a, b) => {
-        //console.log(a);
-        //console.log(b.total - a.total);
+        // if (a['Nombre del Indicador'] == "Numero de niñas, niños y adolescentes víctimas del conflicto armado" || b['Nombre del Indicador'] == "Numero de niñas, niños y adolescentes víctimas del conflicto armado")
+        //     console.log(b.total - a.total);
         return b.total - a.total;
         //
     });
     x.domain(d.map(function(d) {
-        //console.log(d.State);
-        return d['Nombre del Indicador'];
+        return d['name'];
     }));
 
     y.domain([0, d3.max(d, function(d) {
@@ -150,24 +148,19 @@ rawDS.then((d) => {
         .data(d3.stack().keys(keys)(d))
         .enter().append("g")
         .attr("fill", function(d) {
-           //console.log(d.key);
             return z(d.key);
         })
         .selectAll("rect")
-        .data(function(d) {
-            //console.log(d);
-            return d;
+        .data((da) => {
+            return da;
         })
         .enter().append("rect")
-        .attr("x", function(d) {
-            //console.log(d.data['Nombre del Indicador']);
-            return x(d.data['Nombre del Indicador']);
+        .attr("x", (d) => {
+            return x(d.data['name']);
         })
         .attr("y", function(d) {
-            //console.log(y(d[1]));
             if (!d[1])
                 d[1] = 0;
-            //console.log(d[1]);
             return y(d[1]);
         })
         .attr("height", function(d) {
@@ -182,7 +175,7 @@ rawDS.then((d) => {
                     div.transition()
                         .duration(200)
                         .style("opacity", .9);
-                        div.html(formatNumber(tot) + " : " + d.data['Nombre del Indicador'] + "<br/>")
+                        div.html(formatNumber(tot) + " : " + d.data['name'] + "<br/>")
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY - 28) + "px")
                             .style("width", "400px")
@@ -222,7 +215,7 @@ rawDS.then((d) => {
             .enter().append("g")
             .attr("transform", function(d, i) {
                 return "translate(0," + i * 20 + ")";
-            });
+            });           
 
         legend.append("rect")
             .attr("x", width - 19)
@@ -250,7 +243,7 @@ rawDS.then((d) => {
     <ul>
         <li><b>WHAT:</b> Data: Multidimensional table: One quantitative value attribute, two categorical key attributes for the year and violence type.</li>
         <li><b>WHAT:</b> Derived: One quantitative attribute value to sort the view.</li>
-        <li><b>WHY:</b> Present distribution of types of violence and deaths over a period of 4 years in Colombia./li>
+        <li><b>WHY:</b> Present distribution of types of violence and deaths over a period of 4 years in Colombia. <b>SEPARATE, ORDER and ALIGN</b></li>
         <li><b>HOW:</b> Encode: Line marks with length channel; rectilinear layout.</li>
         <li><b>HOW:</b> Manipulate: To show the type of cases of violence, category 1.</li>
         <li><b>Marks:</b>Lines in an ordered way to express the caterory related to the type of cases</li>
