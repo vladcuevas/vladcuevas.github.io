@@ -1,4 +1,4 @@
-# Incremento de la Temperatura desde 1950 (Promedio de cada 10 años)
+# Incremento de la Temperatura desde 1950 (Promedio de cada 5 años)
 
 ![alt text](https://c1.staticflickr.com/3/2922/14141611115_7bcfdc2ab0_c.jpg)
 
@@ -8,12 +8,10 @@
 - **Fecha**: 9/10/2018
 - **Licencia**: MIT
 
-
-
 Esta visualización confirma la afirmación original: la temperatura global continuó aumentando rápidamente en el siglo XXI, alcanzando nuevos niveles récord en cada década. También muestra que los datos del hemisferio norte en el invierno meteorológico son los más turbulentos, y hubo un gran aumento en la desviación a mediados de la década de 1970’s y en el año de 1995.
 
 ## Datos del Proyecto – What?
-Los datos que se usaron para la visualización son de un dataset del tipo tabla (tables), que contiene las siguientes variables (attributes):
+Los datos que se usaron para la visualización son de un dataset del tipo tabla (tables) - temporal, con varias líneas de tiempo, que contiene las siguientes variables (attributes):
 
 |Variable |Tipo|
 |---------|----|
@@ -40,11 +38,13 @@ El dataset utilizado para esta visualización fue descargado del sitio del Natio
 - [GISS Surface Temperature Analysis (GISTEMP)](https://data.giss.nasa.gov/gistemp/)
 
 ## Objetivos del Proyecto - Why?
-- **Tarea Principal:** Presentar (**present**) la tendencia (**trend**) de la temperatura de la tierra utilizando la información recolectada sobre la superficie y mar a través del tiempo (**1950-2018**), para educar a la gente acerca del calentamiento global.
+- **Tarea Principal:** Resumir (**summarize**) la tendencia (**trend**) de la temperatura de la tierra utilizando la información recolectada sobre la superficie y mar a través del tiempo (**1950-2018**), para educar a la gente acerca del calentamiento global.
 
 - **Tareas Secundarias:**
 
-	- Comparar (**compare**) entre las tendencias (**trends**) de la temperatura promedio, para los hemisferios norte y sur utilizando la información recolectada sobre la superficie y mar a través del tiempo (**1950-2018**), para educar a la gente acerca del calentamiento global.
+	- Comparar (**compare**) la similitud (**similarity**) entre las tendencias (**trends**) de la temperatura promedio, para los hemisferios norte y sur utilizando la información recolectada sobre la superficie y mar a través del tiempo (**1950-2018**), para educar a la gente acerca del calentamiento global.
+
+	- Localizar outliers / **Locate Outliers** o desviaciones sobre la línea de tiempo.
 
 ## Marcas y Canales – How?
 
@@ -66,6 +66,7 @@ El dataset utilizado para esta visualización fue descargado del sitio del Natio
 - Se logra demostrar que el calentamiento global es inminente, no solo ha incrementado, sino que no se ha detenido.
 - Se nota en la vista que desde los años 70’s el incremento es mucho más pronunciado
 - El hemisferio norte es el mayor afectado.
+- Esta visualización confirma la afirmación original: la temperatura global continuó aumentando rápidamente en el siglo XXI, alcanzando nuevos niveles récord en cada década. También muestra que los datos del hemisferio norte en el invierno meteorológico son los más turbulentos, y hubo un gran aumento en la desviación a mediados de la década de 1970’s y en el año de 1995.
 
 ## Tecnologías Usadas
 Para el desarrollo del proyecto se usaron las siguientes tecnologías:
@@ -104,7 +105,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 
 ## Screenshot
 
-![alt text](https://raw.githubusercontent.com/vladcuevas/vladcuevas.github.io/master/Bono/img/Capture01.gif)
+![alt text](https://github.com/vladcuevas/Visual-Analytics/raw/master/Bono/img/Capture01.gif)
 
 ## Licencia
 Este proyecto está bajo la licencia [MIT](https://github.com/vladcuevas/vladcuevas.github.io/blob/master/LICENSE).
