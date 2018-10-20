@@ -122,7 +122,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 
 ## Screenshot
 
-![alt text](https://github.com/vladcuevas/Visual-Analytics/raw/master/homework4/img/screenshot.gif)
+![alt text](https://github.com/vladcuevas/vladcuevas.github.io/raw/master/homework4/img/screenshot.gif)
 
 ## Presentación
 
