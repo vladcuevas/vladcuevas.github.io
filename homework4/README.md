@@ -1,6 +1,6 @@
 # **Delitos Sexuales en Colombia desde 2010 a 2018**
 
-![alt text](https://github.com/vladcuevas/Visual-Analytics/raw/master/homework4/img/VDXL8269.jpg)
+![alt text](https://github.com/vladcuevas/vladcuevas.github.io/raw/master/homework4/img/VDXL8269.jpg)
 
 - **Por**: Vladimir E. Cuevas S.
 - **Curso**: Visual Analytics
