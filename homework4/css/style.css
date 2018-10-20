@@ -1,0 +1,34 @@
+body {
+    font-family: 'Catamaran', sans-serif;
+    margin: 20px;
+    top: 20px;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+}
+
+.arcLabelLine {
+    stroke: #E9E9E9;
+}
+
+.coil-label {
+    fill: #000;
+    font-size: 12px;
+}
+
+div.tooltip {
+    position: absolute;
+    text-align: center;
+    padding: 2px;
+    font: 12px sans-serif;
+    border: 1px;
+    pointer-events: none;
+    border-radius: 8px;
+    border-color: coral;
+    border-style: solid;
+}
+
+.center {
+    text-align: center;
+    width: 800px;
+}

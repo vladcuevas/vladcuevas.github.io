@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Delitos Sexuales en Colombia - Spiral HeatMap</title>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+    <!-- locals -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/slider.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="explain"><h1 class="center">Delitos Sexuales en Colombia desde 2010 a 2018</h1>
+        <p class="center">Esta visualización muestra el total de casos de delitos sexuales reportados y atendidos por la policia nacional colombiana desde el año 2010 hasta el 30 de septiembre de 2018<br />De igual forma se puede ver por més una mini visualización por día</p>
+    </div>
+    <svg id="slider" width="800" height="50"></svg>
+    <div id="legend"></div>
+    <div id="chart"></div>
+    <script src="js/script.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+
+</html>
