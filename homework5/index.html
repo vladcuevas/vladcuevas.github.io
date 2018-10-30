@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Delitos Sexuales en Colombia - Force in a Box (d3v5)</title>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Catamaran" rel="stylesheet">
+    <!-- locals -->
+    <script type="text/javascript" src="libs/forceInABox.js"></script>
+    <link rel="stylesheet" href="css/homework5.css">
+</head>
+
+<body>
+    <div id="explain"><h1 class="center">Principales Poblaciones Afectadas por los Delitos Sexuales en Colombia entre enero de 2010 y septiembre de 2018</h1>
+        <p class="center">Esta visualización muestra cuatro categorías en una red relacionadas con el total de casos de delitos sexuales reportados y atendidos por la policía nacional colombiana desde el año 2010 hasta el 30 de septiembre de 2018<br /></p>
+    </div>
+    <hr>
+    <div id="">
+        <input id="checkGroupInABox" type="checkbox"> Agrupar en Cajas </input>
+        <select id="selectTemplate" type="select">
+            <option value="treemap">Treemap</option>
+            <option value="force">La Fuerza</option>
+        </select>
+    </div>
+    <br>
+    <script src="js/homework5.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</body>
+</html>
