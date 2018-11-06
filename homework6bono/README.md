@@ -74,7 +74,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 
 ### Uso
 - Acceder a la dirección [https://vladcuevas.github.io/](https://vladcuevas.github.io/)
-- Dar clic en el enlace [Tarea 6 (Bono): Árbol de Items impartidos por el MOOC de Suxualidad de La Universidad de Los Andes](https://vladcuevas.github.io/homework6bono/)
+- Dar clic en el enlace [Tarea 6 (Bono): Árbol de Items impartidos por el MOOC de Sexualidad  de La Universidad de Los Andes](https://vladcuevas.github.io/homework6bono/)
 - Interactuar con la vista seleccionando las formas de fuerza (force) y treemap.
 
 ## Autores
