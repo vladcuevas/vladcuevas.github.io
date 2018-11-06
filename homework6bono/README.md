@@ -75,7 +75,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 ### Uso
 - Acceder a la dirección [https://vladcuevas.github.io/](https://vladcuevas.github.io/)
 - Dar clic en el enlace [Tarea 6 (Bono): Árbol de Items impartidos por el MOOC de Sexualidad  de La Universidad de Los Andes](https://vladcuevas.github.io/homework6bono/)
-- Interactuar con la vista seleccionando las formas de fuerza (force) y treemap.
+- Interactuar con la vista seleccionando los nodos que desea expandir.
 
 ## Autores
 - **Autor(es) de los datos:** Datos Abiertos y La Policía de Colombia
