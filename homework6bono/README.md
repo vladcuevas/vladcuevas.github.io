@@ -82,7 +82,7 @@ Para el desarrollo del proyecto se usaron las siguientes tecnologías:
 	- El enlace a la página de los datos de datos abiertos es: [Datos Abiertos](https://www.datos.gov.co)
 - **Autor de la visualización:** [Vladimir E. Cuevas S.](https://github.com/vladcuevas)
 - **Autor de la fotografía y arte de esta página:** [Vladimir E. Cuevas S.](https://github.com/vladcuevas)
-	- El enlace a la página del proyecto es: [https://vladcuevas.github.io/homework5/](https://vladcuevas.github.io/homework5/)
+	- El enlace a la página del proyecto es: [https://vladcuevas.github.io/homework5/](https://vladcuevas.github.io/homework6bono/)
 
 ## Vídeo
 
