@@ -13,7 +13,7 @@
 
 Gracias a la visualización me di cuenta de que:
 
-1.	Que los cursos que están siendo más atractivos para los usuarios del MOOC son los del inicio, lo que indica que no se está logrando llevar a la mayoría de la población al 75% de los items del MOOC.
+1.	Que los cursos que están siendo más atractivos para los usuarios del MOOC son los del inicio, lo que indica que no se está logrando llevar a la mayoría de la población al 75% de los ítems del MOOC.
 
 ## Datos del Proyecto – What?
 Los datos que se usaron para la visualización son de un dataset del tipo tree (árbol), que contiene las siguientes variables (attributes) y están agrupados por name y children:
@@ -28,7 +28,7 @@ Static.
 
 ### **Fuente de los datos**
 
-Los datos fueron obtenidos como parte del conjunto de información de COURSERA, específicamente del curso “Sexualidad… mucho mas que sexo”, publicado por la Universidad de los Andes en dicha plataforma y que distribuye sus contenidos de forma gratuita desde al año 2015.
+Los datos fueron obtenidos como parte del conjunto de información de COURSERA, específicamente del curso “Sexualidad… mucho más que sexo”, publicado por la Universidad de los Andes en dicha plataforma y que distribuye sus contenidos de forma gratuita desde al año 2015.
 
 ## Objetivos del Proyecto - Why?
 - **Tarea Principal:** 
@@ -49,7 +49,7 @@ Los datos fueron obtenidos como parte del conjunto de información de COURSERA, 
 
 #### Canales
 - Area (2D size): que se obtiene por el valor de la cantidad de casos aplicada con una escala SQRT sobre el radio de los puntos.
-- Posición para aplicar la fuerza y mantener los nodos visibles dentro del espacio del SVG. y para obtener la posición del nodo target.
+- Posición para establecer en donde se ubican los nodos hijos. Aka Translate.
 - Hue - Color: para diferenciar los grupos o clusters de las diferentes categorías. Nodo de ítem exitoso contra nodo no exitoso, dos colores, negro y blanco.
 
 ## Tecnologías Usadas
